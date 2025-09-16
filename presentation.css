@@ -1,0 +1,192 @@
+:root {
+    --color-primary: #22d3ee; /* cyan-400 */
+    --color-secondary: #fb923c; /* orange-400 */
+    --color-bg-dark: #111827; /* gray-900 */
+    --color-bg-light: #1f2937; /* gray-800 */
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    overflow: hidden; 
+    background-color: var(--color-bg-dark);
+    color: #f9fafb; /* gray-50 */
+}
+
+#presentation-container { 
+    position: relative; 
+    width: 100vw; 
+    height: 100vh; 
+}
+
+.presentation-slide {
+    position: absolute !important; 
+    inset: 0 !important; 
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s !important;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 5vw; 
+    overflow: hidden; 
+    box-sizing: border-box;
+    opacity: 0; 
+    visibility: hidden; 
+    pointer-events: none; 
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.presentation-slide:first-child {
+    opacity: 1; 
+    visibility: visible; 
+    pointer-events: auto; 
+    z-index: 2;
+}
+
+/* Layout Helpers */
+.presentation-slide.layout-fullscreen { padding: 0; }
+.presentation-slide.layout-split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+.presentation-slide.layout-asymmetric { padding: 2vw 8vw 8vw 2vw; }
+.presentation-slide.layout-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+@media (max-width: 768px) {
+    .presentation-slide { padding: 8vw 5vw; }
+    .presentation-slide.layout-split-2, .presentation-slide.layout-asymmetric { grid-template-columns: 1fr; }
+    .presentation-slide.layout-asymmetric { padding: 8vw 5vw; }
+    .slide-2-image { min-height: 300px; }
+}
+
+/* Slide 3: Problem */
+.problem-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.problem-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Slide 5: SEO Benefits */
+.benefit-card {
+    background: transparent;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+.benefit-card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Slide 6: PR & Marketing */
+.pr-card {
+    background-color: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--color-secondary);
+}
+
+/* Slide 7: Sales & Partnership */
+.sales-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 0.75rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.sales-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Slide 8: Timeline */
+.timeline-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    padding: 0 1rem;
+}
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 1.25rem;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-secondary), #6b7280);
+    z-index: 0;
+}
+.timeline-step {
+    position: relative;
+    flex: 1;
+    padding: 0 1rem;
+    text-align: center;
+}
+.timeline-dot {
+    position: absolute;
+    top: 1.25rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-bg-dark);
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-bottom: 1rem;
+}
+.timeline-number {
+    font-weight: bold;
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+}
+.timeline-step h3 {
+    margin-top: 3.5rem;
+}
+@media (max-width: 1024px) {
+    .timeline-container { flex-direction: column; gap: 2rem; }
+    .timeline-container::before { left: 1.25rem; top: 5%; bottom: 5%; width: 2px; height: auto; }
+    .timeline-step { text-align: left; padding-left: 4rem; }
+    .timeline-dot { left: 1.25rem; }
+    .timeline-step h3 { margin-top: 0; }
+}
+
+
+/* Slide 10: Case Studies */
+.case-card {
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
+/* Slide 11: CTA Button */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    padding: 0.75rem 1.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+}
+.cta-button i {
+    transition: transform 0.3s;
+}
+.cta-button:hover i {
+    transform: translateX(4px);
+}
